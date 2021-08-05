@@ -1,0 +1,11 @@
+Description = login Service
+
+[Service]
+
+Environment=USERS_API_ADDRESS=http://users-{{ENV}}.zsldevops.online:8080
+Environment=AUTH_API_PORT=8080
+ExecStart=/home/ubuntu/login/login-ci
+SyslogIdentifier=login
+
+[Install]
+WantedBy=multi-user.target
