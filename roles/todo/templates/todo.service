@@ -1,0 +1,11 @@
+  
+[Unit]
+Description=todo Service
+
+[Service]
+Environment=REDIS_HOST=redis-{{ENV}}.zsldevops.online.host
+ExecStart=/bin/node /home/ubuntu/todo/server.js
+SyslogIdentifier =todo
+
+[Install]
+WantedBy=multi-user.target
