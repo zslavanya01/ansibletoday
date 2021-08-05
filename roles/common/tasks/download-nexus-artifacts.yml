@@ -1,0 +1,26 @@
+- name: Download {{COMPONENT}} from nexus
+  get_url:
+    url: http://172.31.1.61:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
+    dest: /tmp/{{COMPONENT}}.zip
+    username: admin
+    password: admin123
+
+- name: Clean the old artifacts
+  file:
+    path: /home/ubuntu/{{COMPONENT}}
+    state: absent
+
+- name: Create the artifact path
+  file:
+    path: /home/ubuntu/{{COMPONENT}}
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+
+- name: Extract the {{COMPONENT}} Content
+  unarchive:
+    src: /tmp/{{COMPONENT}}.zip
+    dest: /home/ubuntu/{{COMPONENT}}
+    remote_src: yes
+    owner: ubuntu
+    group: ubuntu
