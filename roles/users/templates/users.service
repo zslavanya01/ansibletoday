@@ -1,0 +1,9 @@
+[Unit]
+Description=user service
+
+[Service]
+Environment=AUTH_API_PORT=8080
+ExecStart=/bin/java -jar /home/ubuntu/users/users.jar
+SyslogIdentifier=user
+[Install]
+WantedBy=multi-user.target
