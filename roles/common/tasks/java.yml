@@ -21,3 +21,8 @@
 
 - name: Setup SystemD Service
   include_tasks: setup-systemd.yml
+
+- name: Install node exporter prometheus monitoring
+  include_role:
+    name: common
+    tasks_from: node_exporter
