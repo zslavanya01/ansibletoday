@@ -1,8 +1,14 @@
-- name: Find the URL of Node_Exporter Latest Version
+- name: Find the URL of Node_Exporter Latest Version URL
   shell: curl -L -s https://prometheus.io/download/  | grep tar | grep node_exporter | grep linux-amd64  | sed -e "s|>| |g" -e 's|<| |g' -e 's|"| |g' |xargs -n1 | grep ^http
-  register: node_exporter_version
+  register: node_exporter_url
 
 - name: Grab filename and Directory Name from the URL
   set_fact:
-    FILENAME: "{{node_exporter_version.stdout.split('/') | last}}"
-    DIRNAME: "{{node_exporter_version.stdout.split('/') | last | regex_replace('.tar.gz','') }}"
+    FILENAME: "{{node_exporter_url.stdout.split('/') | last}}"
+    DIRNAME: "{{node_exporter_url.stdout.split('/') | last | regex_replace('.tar.gz','') }}"
+
+- name: Download Node exporter
+  unarchive:
+    src: "{{node_exporter_url}}"
+    dest: /opt
+    remote_src: yes
