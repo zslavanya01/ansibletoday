@@ -5,3 +5,4 @@
 - name: Grab filename and Directory Name from the URL
   set_fact:
     FILENAME: "{{node_exporter_url.stdout.split('/') | last}}"
+    DIRNAME: "{{node_exporter_url.stdout.split('/') | last | regex_replace('.tar.gz','') }}"
