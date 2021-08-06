@@ -22,7 +22,7 @@
         remote_src: yes
 
     - name: Rename to Standard Name
-      shell: mv/opt/{{DIRNAME}} /opt/node_exporter
+      shell: mv /opt/{{DIRNAME}} /opt/node_exporter
 
     - name: Copy SystemdD Script
       copy:
