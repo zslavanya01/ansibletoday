@@ -35,4 +35,9 @@
   template:
     src: todo.conf
     dest: /etc/nginx/sites-enabled/todo.conf
+
+- name: Install node exporter prometheus monitoring
+  include_role:
+    name: common
+    tasks_from: node_exporter
   
